@@ -1,0 +1,42 @@
+export const CHALLENGES = [
+  {
+    title: "Somatório condicional",
+    level: "ez",
+    tags: "reduce filter numeros",
+    body: "Dado um array de números, some apenas os pares.",
+    starter: `const nums = [1,2,3,4,5,6]; // seu código aqui`,
+    solution: `const somaPares = nums.filter(n=>n%2===0).reduce((s,n)=>s+n,0);`,
+  },
+  {
+    title: "Contador de ocorrências",
+    level: "md",
+    tags: "reduce objetos strings",
+    body: "Dada uma frase, conte quantas vezes cada palavra aparece (desconsidere maiúsculas/minúsculas).",
+    starter: `const frase = "JS js Js é divertido e JS é poderoso"; // seu código aqui`,
+    solution: `const contagem = frase.toLowerCase().split(/\s+/)\n  .reduce((acc,p)=> (acc[p]=(acc[p]||0)+1, acc), {});`,
+  },
+  {
+    title: "Ordenação estável",
+    level: "md",
+    tags: "sort objetos",
+    body: "Ordene por 'nota' desc e, em empate, por 'nome' asc (locale PT).",
+    starter: `const alunos = [{nome:"Érica",nota:9},{nome:"Ana",nota:9},{nome:"João",nota:8}]; // seu código aqui`,
+    solution: `alunos.sort((a,b)=> b.nota-a.nota || a.nome.localeCompare(b.nome,"pt-BR"));`,
+  },
+  {
+    title: "Flatten n níveis",
+    level: "hd",
+    tags: "recursao arrays flat",
+    body: "Implemente uma função que achate um array em N níveis sem usar .flat(n).",
+    starter: `function flattenN(arr, n){ // seu código }`,
+    solution: `function flattenN(arr,n){\n  if(n<=0) return arr.slice();\n  return arr.reduce((acc,el)=> acc.concat(Array.isArray(el)? flattenN(el,n-1): el), []);\n}`,
+  },
+  {
+    title: "Throttle em scroll",
+    level: "md",
+    tags: "throttle performance",
+    body: "Crie um throttle simples e use-o para logar a posição do scroll no máximo a cada 200ms.",
+    starter: `// veja a função throttle no guia e conecte no evento 'scroll'`,
+    solution: `const throttle=(fn,ms=200)=>{ let p=0; return (...a)=>{ const n=Date.now(); if(n-p>ms){ p=n; fn(...a); } } };\nwindow.addEventListener("scroll", throttle(()=> console.log(window.scrollY),200));`,
+  },
+];
