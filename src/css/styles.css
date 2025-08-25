@@ -1,0 +1,8 @@
+/* Ponto de entrada de estilos. Importa base e componentes. */
+@import url("./base.css");
+@import url("./components.css");
+@media (prefers-color-scheme: light) {
+  :root {
+    color-scheme: light;
+  }
+}
