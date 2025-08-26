@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>✨ Guia Prático de JavaScript — Pixel Edition</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>✨ Guia Prático de JavaScript — Pixel Edition</title>
 
-  <!--
+    <!--
     📄 index.html (página raiz)
     - Carrega as folhas de estilo e inicializa os módulos JS via ES Modules (type="module").
     - Tudo em /public é servido "como está". Em setups com Vite/Next, esta pasta vira o diretório estático.
@@ -14,118 +14,316 @@
         * Em monorepo (apps/pixel-guide), manter /public e /src e apontar o dev server para cá.
   -->
 
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Press+Start+2P&display=swap" rel="stylesheet" />
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Press+Start+2P&display=swap"
+      rel="stylesheet"
+    />
 
-  <!-- CSS principal gerenciado por /src/css -->
-  <link rel="stylesheet" href="../src/css/styles.css" />
-</head>
-<body>
-  <!-- Fundo / decoração (fica comentado: mantido para acessibilidade) -->
-  <div class="background-gradient" aria-hidden="true"></div>
-  <div class="floating-elements" aria-hidden="true">
-    <div class="floating-heart">💖</div>
-    <div class="floating-star">✨</div>
-    <div class="floating-sparkle">💫</div>
-    <div class="floating-flower">🌸</div>
-    <div class="floating-butterfly">🦋</div>
-    <div class="floating-crystal">💎</div>
-    <div class="floating-moon">🌙</div>
-    <div class="floating-rainbow">🌈</div>
-  </div>
-
-  <header>
-    <div class="header-content">
-      <h1>✨ Guia Prático de JavaScript — <span class="pixel">PIXEL</span> ✨</h1>
-      <p class="subtitle">Métodos e padrões mais usados — copie, cole e brilhe! 🌟</p>
-      <div class="header-decoration" aria-hidden="true">
-        <span class="sparkle">✨</span>
-        <span class="heart">💝</span>
-        <span class="sparkle">✨</span>
-      </div>
-    </div>
-  </header>
-
-  <!-- Navegação em abas -->
-  <nav>
-    <div class="nav-container" role="tablist" aria-label="Seções do guia">
-      <button class="nav-button active" data-section="arrays" role="tab" aria-selected="true" aria-controls="arrays">
-        <span class="nav-icon">📚</span><span class="nav-text">Arrays</span><div class="nav-sparkle">✨</div>
-      </button>
-      <button class="nav-button" data-section="transform" role="tab" aria-selected="false" aria-controls="transform">
-        <span class="nav-icon">🔄</span><span class="nav-text">Transformação</span><div class="nav-sparkle">✨</div>
-      </button>
-      <button class="nav-button" data-section="objects" role="tab" aria-selected="false" aria-controls="objects">
-        <span class="nav-icon">📦</span><span class="nav-text">Objetos</span><div class="nav-sparkle">✨</div>
-      </button>
-      <button class="nav-button" data-section="strings" role="tab" aria-selected="false" aria-controls="strings">
-        <span class="nav-icon">📝</span><span class="nav-text">Strings</span><div class="nav-sparkle">✨</div>
-      </button>
-      <button class="nav-button" data-section="numbers" role="tab" aria-selected="false" aria-controls="numbers">
-        <span class="nav-icon">🔢</span><span class="nav-text">Números</span><div class="nav-sparkle">✨</div>
-      </button>
-      <button class="nav-button" data-section="dates" role="tab" aria-selected="false" aria-controls="dates">
-        <span class="nav-icon">📅</span><span class="nav-text">Datas</span><div class="nav-sparkle">✨</div>
-      </button>
-      <button class="nav-button" data-section="json" role="tab" aria-selected="false" aria-controls="json">
-        <span class="nav-icon">🌐</span><span class="nav-text">JSON</span><div class="nav-sparkle">✨</div>
-      </button>
-      <button class="nav-button" data-section="async" role="tab" aria-selected="false" aria-controls="async">
-        <span class="nav-icon">⚡</span><span class="nav-text">Assíncrono</span><div class="nav-sparkle">✨</div>
-      </button>
-      <button class="nav-button" data-section="logic" role="tab" aria-selected="false" aria-controls="logic">
-        <span class="nav-icon">🧠</span><span class="nav-text">Lógica</span><div class="nav-sparkle">✨</div>
-      </button>
-      <button class="nav-button" data-section="example" role="tab" aria-selected="false" aria-controls="example">
-        <span class="nav-icon">💡</span><span class="nav-text">Exemplo</span><div class="nav-sparkle">✨</div>
-      </button>
-      <button class="nav-button" data-section="challenges" role="tab" aria-selected="false" aria-controls="challenges">
-        <span class="nav-icon">🎮</span><span class="nav-text">Desafios</span><div class="nav-sparkle">✨</div>
-      </button>
-    </div>
-  </nav>
-
-  <!-- Container principal -->
-  <div class="container">
-    <!-- Busca global -->
-    <div class="search-container" role="search">
-      <div class="search-box">
-        <input id="globalSearch" type="text" class="search-input" placeholder="Buscar métodos, exemplos ou conceitos... 💕" aria-label="Buscar no guia" />
-        <span class="search-icon" aria-hidden="true">🔍</span>
-      </div>
-      <div class="filters">
-        <button id="btnClearSearch" class="chip">Limpar</button>
-        <button id="btnToggleTheme" class="chip">Tema</button>
-        <button id="btnExpandAll" class="chip">Expandir tudo</button>
-        <button id="btnCollapseAll" class="chip">Recolher tudo</button>
-      </div>
+    <!-- CSS principal gerenciado por /src/css -->
+    <link rel="stylesheet" href="../src/css/styles.css" />
+  </head>
+  <body>
+    <!-- Fundo / decoração (fica comentado: mantido para acessibilidade) -->
+    <div class="background-gradient" aria-hidden="true"></div>
+    <div class="floating-elements" aria-hidden="true">
+      <div class="floating-heart">💖</div>
+      <div class="floating-star">✨</div>
+      <div class="floating-sparkle">💫</div>
+      <div class="floating-flower">🌸</div>
+      <div class="floating-butterfly">🦋</div>
+      <div class="floating-crystal">💎</div>
+      <div class="floating-moon">🌙</div>
+      <div class="floating-rainbow">🌈</div>
     </div>
 
-    <!-- Seções vazias (o conteúdo é renderizado pelo JS a partir de /src/data) -->
-    <section id="arrays" class="section active" role="tabpanel" tabindex="0" aria-labelledby="arrays"><h2><span class="section-emoji">📚</span>Arrays — manipulação do dia a dia</h2></section>
-    <section id="transform" class="section" role="tabpanel" tabindex="0" aria-labelledby="transform"><h2><span class="section-emoji">🔄</span>Arrays — transformação & busca</h2></section>
-    <section id="objects" class="section" role="tabpanel" tabindex="0" aria-labelledby="objects"><h2><span class="section-emoji">📦</span>Objetos — chaves, valores, conversões</h2></section>
-    <section id="strings" class="section" role="tabpanel" tabindex="0" aria-labelledby="strings"><h2><span class="section-emoji">📝</span>Strings — busca, cortes e formatação</h2></section>
-    <section id="numbers" class="section" role="tabpanel" tabindex="0" aria-labelledby="numbers"><h2><span class="section-emoji">🔢</span>Números & Math — conversões e cálculos</h2></section>
-    <section id="dates" class="section" role="tabpanel" tabindex="0" aria-labelledby="dates"><h2><span class="section-emoji">📅</span>Datas — criação, formatação e cálculo</h2></section>
-    <section id="json" class="section" role="tabpanel" tabindex="0" aria-labelledby="json"><h2><span class="section-emoji">🌐</span>JSON — trafegar dados</h2></section>
-    <section id="async" class="section" role="tabpanel" tabindex="0" aria-labelledby="async"><h2><span class="section-emoji">⚡</span>Promises & Assíncrono</h2></section>
-    <section id="logic" class="section" role="tabpanel" tabindex="0" aria-labelledby="logic"><h2><span class="section-emoji">🧠</span>Lógica & Utilidades</h2></section>
-    <section id="example" class="section" role="tabpanel" tabindex="0" aria-labelledby="example"><h2><span class="section-emoji">💡</span>Mini-cenário prático</h2></section>
-    <section id="challenges" class="section" role="tabpanel" tabindex="0" aria-labelledby="challenges">
-      <h2><span class="section-emoji">🎮</span>Desafios de Lógica</h2>
-      <div id="challengeList"></div>
-      <p class="hint">Dica: pressione <span class="kbd">/</span> para focar na busca.</p>
-    </section>
-  </div>
+    <header>
+      <div class="header-content">
+        <h1>
+          ✨ Guia Prático de JavaScript — <span class="pixel">PIXEL</span> ✨
+        </h1>
+        <p class="subtitle">
+          Métodos e padrões mais usados — copie, cole e brilhe! 🌟
+        </p>
+        <div class="header-decoration" aria-hidden="true">
+          <span class="sparkle">✨</span>
+          <span class="heart">💝</span>
+          <span class="sparkle">✨</span>
+        </div>
+      </div>
+    </header>
 
-  <!-- Botões e meta -->
-  <button class="back-to-top" aria-label="Voltar ao topo">
-    <span class="back-to-top-icon" aria-hidden="true">🌸</span>
-  </button>
-  <div class="progress-bar" aria-hidden="true"><div class="progress-fill"></div></div>
+    <!-- Navegação em abas -->
+    <nav>
+      <div class="nav-container" role="tablist" aria-label="Seções do guia">
+        <button
+          class="nav-button active"
+          data-section="arrays"
+          role="tab"
+          aria-selected="true"
+          aria-controls="arrays"
+        >
+          <span class="nav-icon">📚</span><span class="nav-text">Arrays</span>
+          <div class="nav-sparkle">✨</div>
+        </button>
+        <button
+          class="nav-button"
+          data-section="transform"
+          role="tab"
+          aria-selected="false"
+          aria-controls="transform"
+        >
+          <span class="nav-icon">🔄</span
+          ><span class="nav-text">Transformação</span>
+          <div class="nav-sparkle">✨</div>
+        </button>
+        <button
+          class="nav-button"
+          data-section="objects"
+          role="tab"
+          aria-selected="false"
+          aria-controls="objects"
+        >
+          <span class="nav-icon">📦</span><span class="nav-text">Objetos</span>
+          <div class="nav-sparkle">✨</div>
+        </button>
+        <button
+          class="nav-button"
+          data-section="strings"
+          role="tab"
+          aria-selected="false"
+          aria-controls="strings"
+        >
+          <span class="nav-icon">📝</span><span class="nav-text">Strings</span>
+          <div class="nav-sparkle">✨</div>
+        </button>
+        <button
+          class="nav-button"
+          data-section="numbers"
+          role="tab"
+          aria-selected="false"
+          aria-controls="numbers"
+        >
+          <span class="nav-icon">🔢</span><span class="nav-text">Números</span>
+          <div class="nav-sparkle">✨</div>
+        </button>
+        <button
+          class="nav-button"
+          data-section="dates"
+          role="tab"
+          aria-selected="false"
+          aria-controls="dates"
+        >
+          <span class="nav-icon">📅</span><span class="nav-text">Datas</span>
+          <div class="nav-sparkle">✨</div>
+        </button>
+        <button
+          class="nav-button"
+          data-section="json"
+          role="tab"
+          aria-selected="false"
+          aria-controls="json"
+        >
+          <span class="nav-icon">🌐</span><span class="nav-text">JSON</span>
+          <div class="nav-sparkle">✨</div>
+        </button>
+        <button
+          class="nav-button"
+          data-section="async"
+          role="tab"
+          aria-selected="false"
+          aria-controls="async"
+        >
+          <span class="nav-icon">⚡</span
+          ><span class="nav-text">Assíncrono</span>
+          <div class="nav-sparkle">✨</div>
+        </button>
+        <button
+          class="nav-button"
+          data-section="logic"
+          role="tab"
+          aria-selected="false"
+          aria-controls="logic"
+        >
+          <span class="nav-icon">🧠</span><span class="nav-text">Lógica</span>
+          <div class="nav-sparkle">✨</div>
+        </button>
+        <button
+          class="nav-button"
+          data-section="example"
+          role="tab"
+          aria-selected="false"
+          aria-controls="example"
+        >
+          <span class="nav-icon">💡</span><span class="nav-text">Exemplo</span>
+          <div class="nav-sparkle">✨</div>
+        </button>
+        <button
+          class="nav-button"
+          data-section="challenges"
+          role="tab"
+          aria-selected="false"
+          aria-controls="challenges"
+        >
+          <span class="nav-icon">🎮</span><span class="nav-text">Desafios</span>
+          <div class="nav-sparkle">✨</div>
+        </button>
+      </div>
+    </nav>
 
-  <!-- Scripts via ES Modules -->
-  <script type="module" src="../src/js/main.js"></script>
-</body>
+    <!-- Container principal -->
+    <div class="container">
+      <!-- Busca global -->
+      <div class="search-container" role="search">
+        <div class="search-box">
+          <input
+            id="globalSearch"
+            type="text"
+            class="search-input"
+            placeholder="Buscar métodos, exemplos ou conceitos... 💕"
+            aria-label="Buscar no guia"
+          />
+          <span class="search-icon" aria-hidden="true">🔍</span>
+        </div>
+        <div class="filters">
+          <button id="btnClearSearch" class="chip">Limpar</button>
+          <button id="btnToggleTheme" class="chip">Tema</button>
+          <button id="btnExpandAll" class="chip">Expandir tudo</button>
+          <button id="btnCollapseAll" class="chip">Recolher tudo</button>
+        </div>
+      </div>
+
+      <!-- Seções vazias (o conteúdo é renderizado pelo JS a partir de /src/data) -->
+      <section
+        id="arrays"
+        class="section active"
+        role="tabpanel"
+        tabindex="0"
+        aria-labelledby="arrays"
+      >
+        <h2>
+          <span class="section-emoji">📚</span>Arrays — manipulação do dia a dia
+        </h2>
+      </section>
+      <section
+        id="transform"
+        class="section"
+        role="tabpanel"
+        tabindex="0"
+        aria-labelledby="transform"
+      >
+        <h2>
+          <span class="section-emoji">🔄</span>Arrays — transformação & busca
+        </h2>
+      </section>
+      <section
+        id="objects"
+        class="section"
+        role="tabpanel"
+        tabindex="0"
+        aria-labelledby="objects"
+      >
+        <h2>
+          <span class="section-emoji">📦</span>Objetos — chaves, valores,
+          conversões
+        </h2>
+      </section>
+      <section
+        id="strings"
+        class="section"
+        role="tabpanel"
+        tabindex="0"
+        aria-labelledby="strings"
+      >
+        <h2>
+          <span class="section-emoji">📝</span>Strings — busca, cortes e
+          formatação
+        </h2>
+      </section>
+      <section
+        id="numbers"
+        class="section"
+        role="tabpanel"
+        tabindex="0"
+        aria-labelledby="numbers"
+      >
+        <h2>
+          <span class="section-emoji">🔢</span>Números & Math — conversões e
+          cálculos
+        </h2>
+      </section>
+      <section
+        id="dates"
+        class="section"
+        role="tabpanel"
+        tabindex="0"
+        aria-labelledby="dates"
+      >
+        <h2>
+          <span class="section-emoji">📅</span>Datas — criação, formatação e
+          cálculo
+        </h2>
+      </section>
+      <section
+        id="json"
+        class="section"
+        role="tabpanel"
+        tabindex="0"
+        aria-labelledby="json"
+      >
+        <h2><span class="section-emoji">🌐</span>JSON — trafegar dados</h2>
+      </section>
+      <section
+        id="async"
+        class="section"
+        role="tabpanel"
+        tabindex="0"
+        aria-labelledby="async"
+      >
+        <h2><span class="section-emoji">⚡</span>Promises & Assíncrono</h2>
+      </section>
+      <section
+        id="logic"
+        class="section"
+        role="tabpanel"
+        tabindex="0"
+        aria-labelledby="logic"
+      >
+        <h2><span class="section-emoji">🧠</span>Lógica & Utilidades</h2>
+      </section>
+      <section
+        id="example"
+        class="section"
+        role="tabpanel"
+        tabindex="0"
+        aria-labelledby="example"
+      >
+        <h2><span class="section-emoji">💡</span>Mini-cenário prático</h2>
+      </section>
+      <section
+        id="challenges"
+        class="section"
+        role="tabpanel"
+        tabindex="0"
+        aria-labelledby="challenges"
+      >
+        <h2><span class="section-emoji">🎮</span>Desafios de Lógica</h2>
+        <div id="challengeList"></div>
+        <p class="hint">
+          Dica: pressione <span class="kbd">/</span> para focar na busca.
+        </p>
+      </section>
+    </div>
+
+    <!-- Botões e meta -->
+    <button class="back-to-top" aria-label="Voltar ao topo">
+      <span class="back-to-top-icon" aria-hidden="true">🌸</span>
+    </button>
+    <div class="progress-bar" aria-hidden="true">
+      <div class="progress-fill"></div>
+    </div>
+
+    <!-- Scripts via ES Modules -->
+    <script type="module" src="../src/js/main.js"></script>
+  </body>
 </html>
